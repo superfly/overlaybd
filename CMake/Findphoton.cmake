@@ -5,7 +5,7 @@ set(PHOTON_ENABLE_EXTFS ON)
 FetchContent_Declare(
   photon
   GIT_REPOSITORY https://github.com/benwaffle/PhotonLibOS.git
-  GIT_TAG sni-v0.6
+  GIT_TAG v0.6-musl
 )
 
 if(BUILD_TESTING)
