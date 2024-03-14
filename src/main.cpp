@@ -386,7 +386,6 @@ static void dev_close(struct tcmu_device *dev) {
     LOG_INFO("dev closed `", tcmu_get_path(dev));
     close_cnt++;
     if (close_cnt == 500) {
-        malloc_trim(128 * 1024);
         close_cnt = 0;
     }
     return;
@@ -401,7 +400,6 @@ void sigint_handler(int signal = SIGINT) {
 }
 
 int main(int argc, char **argv) {
-    mallopt(M_TRIM_THRESHOLD, 128 * 1024);
     prctl(PR_SET_THP_DISABLE, 1);
 
     photon::init(photon::INIT_EVENT_DEFAULT, photon::INIT_IO_DEFAULT);

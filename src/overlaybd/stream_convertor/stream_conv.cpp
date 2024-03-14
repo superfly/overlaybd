@@ -234,7 +234,6 @@ int set_log_config(){
 }
 
 int main(int argc, char *argv[]) {
-    mallopt(M_TRIM_THRESHOLD, 128 * 1024);
     // prctl(PR_SET_THP_DISABLE, 1);
 
     // set_log_output_level(1);
