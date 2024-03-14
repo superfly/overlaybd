@@ -1,7 +1,7 @@
 #include <photon/thread/thread.h>
 #include <photon/common/alog.h>
 
-#include <execinfo.h>
+//#include <execinfo.h>
 #include <sched.h>
 
 extern "C" {
@@ -107,6 +107,7 @@ void env_allocator_destroy(env_allocator *allocator)
 
 void env_stack_trace(void)
 {
+#if 0
 	void *trace[ENV_TRACE_DEPTH];
 	char **messages = NULL;
 	int i, size;
@@ -118,6 +119,7 @@ void env_stack_trace(void)
 		printf("%s\n", messages[i]);
 	printf("<<<[stack trace]\n");
 	free(messages);
+#endif
 }
 
 /* CRC */
