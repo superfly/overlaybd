@@ -18,6 +18,7 @@
 #include "../../gzip/gz.h"
 #include "../../cache/gzip_cache/cached_fs.h"
 #include "../../cache/cache.h"
+#include "../../../string_basename.h"
 #include <photon/photon.h>
 #include <photon/common/io-alloc.h>
 #include <photon/common/alog.h>
@@ -201,7 +202,7 @@ char uds_path[] = "/tmp/gzstream_test/stream_conv.sock";
 int download(const std::string &url, const std::string &out) {
     // if (::access(out.c_str(), 0) == 0)
     //     return 0;
-    auto base = std::string(basename(url.c_str()));
+    auto base = string_basename(url);
     // download file
     std::string cmd = "curl -sL -o " + out + " " + url;
     LOG_INFO(VALUE(cmd.c_str()));
@@ -311,7 +312,7 @@ TEST_F(GzIndexTest, stream) {
     int i = 0;
     for (auto test_tgz : filelist) {
         auto jh1 = photon::thread_enable_join(photon::thread_create11(uds_server));
-        std::string fn_test_tgz = basename(test_tgz.c_str());
+        std::string fn_test_tgz = string_basename(test_tgz);
         ASSERT_EQ(
             0, download(test_tgz, (workdir + fn_test_tgz).c_str()));
         auto file = lfs->open(fn_test_tgz.c_str(), O_RDONLY);

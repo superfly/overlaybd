@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+#include "../../../string_basename.h"
 #include <gtest/gtest.h>
 #include <fcntl.h>
 #include <photon/photon.h>
@@ -57,7 +58,7 @@ protected:
 
     int download(const std::string &url, std::string out = "") {
         if (out == "") {
-            out = workdir + "/" + std::string(basename(url.c_str()));
+            out = workdir + "/" + string_basename(url);
         }
         if (fs->access(out.c_str(), 0) == 0)
             return 0;
@@ -265,7 +266,7 @@ TEST_F(TarTest, gz_tarmeta_e2e) {
     };
     for (auto file : filelist){
         ASSERT_EQ(0, download(file.c_str()));
-        auto fn = std::string(basename(file.c_str()));
+        auto fn = string_basename(file);
         auto gzip_file = fs->open(fn.c_str(), O_RDONLY, 0600);
         auto gzfile = open_gzfile_adaptor((workdir + "/" + fn).c_str());
         auto fn_idx = (workdir + "/" + fn + ".gz_idx");
