@@ -25,7 +25,7 @@ jobs:
         releasever="${releasever#refs/tags/}"
         echo "RELEASE_VERSION=${releasever}" >> $GITHUB_ENV
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: true
     - name: Setup buildx instance
@@ -66,7 +66,7 @@ jobs:
       env:
         IMAGE: ${{ matrix.images }}
     - name: Upload
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: releases
         path: releases/overlaybd-*.*
@@ -78,7 +78,7 @@ jobs:
     needs: [build]
     steps:
       - name: Download builds and release notes
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
       - name: Display downloaded files
         shell: bash
         run: ls -l releases
@@ -99,7 +99,7 @@ jobs:
     needs: [build]
     steps:
       - name: Download builds and release notes
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
       - name: Display downloaded files
         shell: bash
         run: ls -l releases
