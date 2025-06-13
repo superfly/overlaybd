@@ -68,7 +68,7 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
-        name: releases
+        name: releases-${{ env.RELEASE_VERSION }}
         path: releases/overlaybd-*.*
 
   dev-release:
