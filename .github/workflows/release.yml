@@ -111,6 +111,7 @@ jobs:
         with:
             pattern: releases-*
             merge-multiple: true
+            path: releases
       - name: Display downloaded files
         shell: bash
         run: ls -l releases
