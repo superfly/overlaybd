@@ -20,12 +20,14 @@ jobs:
         platforms: [linux/amd64]
     steps:
     - name: Set Release Version
+      id: set_release
       if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
       shell: bash
       run: |
         releasever=${{ github.ref }}
         releasever="${releasever#refs/tags/}"
         echo "RELEASE_VERSION=${releasever}" >> $GITHUB_ENV
+        echo "releasever=${releasever}" >> $GITHUB_OUTPUT
     - name: Checkout
       uses: actions/checkout@v4
       with:
@@ -71,7 +73,7 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
-        name: releases-${{ needs.build.outputs.release_version }}
+        name: releases-${{ steps.set_release.outputs.releasever }}
         path: releases/overlaybd-*.*
 
   dev-release:
