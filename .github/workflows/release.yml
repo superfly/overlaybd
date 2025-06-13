@@ -73,7 +73,7 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
-        name: releases-${{ steps.set_release.outputs.releasever }}
+        name: releases-${{ steps.set_release.outputs.release_version }}
         path: releases/overlaybd-*.*
 
   dev-release:
