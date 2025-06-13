@@ -27,7 +27,7 @@ jobs:
         releasever=${{ github.ref }}
         releasever="${releasever#refs/tags/}"
         echo "RELEASE_VERSION=${releasever}" >> $GITHUB_ENV
-        echo "releasever=${releasever}" >> $GITHUB_OUTPUT
+        echo "release_version=${releasever}" >> $GITHUB_OUTPUT
     - name: Checkout
       uses: actions/checkout@v4
       with:
