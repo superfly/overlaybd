@@ -120,5 +120,6 @@ jobs:
         with:
           repo_token: "${{ secrets.PAT_TOKEN }}"
           prerelease: false
+          update_existing: true
           files: |
             releases/overlaybd-*.*
